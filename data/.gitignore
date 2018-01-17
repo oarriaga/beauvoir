@@ -1,6 +1,5 @@
 # Ignore everything in this directory
-ShapeNetCore.v2
-backgrounds
-crop_data
+*
 # Except this file
 !.gitignore
+!cache
