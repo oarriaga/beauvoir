@@ -1,1 +1,2 @@
 from .image_classifier_generator import ImageClassifierGenerator
+from .image_detector_generator import ImageDetectorGenerator
