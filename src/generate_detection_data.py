@@ -14,11 +14,10 @@ class_names = ['airplane', 'bench', 'bottle', 'bus', 'camera', 'can', 'car',
                'mug', 'pillow', 'pistol', 'rifle', 'rocket', 'skateboard',
                'table']
 
-num_images = 50
+num_images = 500
 resolution = (128, 128)
 background = 'plain'
 max_num_lamps = 3
-zoom_range = [-.3, .3]
 translation_range = [-1.5, 1.5]
 max_num_objects_in_scene = 6
 
@@ -28,7 +27,6 @@ image_generator = ImageDetectorGenerator(
                         resolution, background=background,
                         background_images_directory=background_path,
                         max_num_lamps=max_num_lamps,
-                        zoom_range=zoom_range,
                         translation_range=translation_range,
                         max_num_objects_in_scene=max_num_objects_in_scene)
 

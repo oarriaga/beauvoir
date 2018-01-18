@@ -1,2 +1,2 @@
 # beauvoir
-Synthetic data library for object detection and classification.
+Synthetic image data library for object detection and classification.
