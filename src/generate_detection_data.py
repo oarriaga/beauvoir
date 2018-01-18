@@ -15,11 +15,11 @@ class_names = ['airplane', 'bench', 'bottle', 'bus', 'camera', 'can', 'car',
                'table']
 
 num_images = 500
-resolution = (128, 128)
-background = 'plain'
+resolution = (300, 300)
+background = 'crop'
 max_num_lamps = 3
 translation_range = [-1, 1]
-max_num_objects_in_scene = 6
+max_num_objects_in_scene = 5
 
 image_generator = ImageDetectorGenerator(
                         obj_model_directory, save_path,
