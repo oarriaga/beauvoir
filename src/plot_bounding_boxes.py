@@ -8,11 +8,17 @@ FONT = cv2.FONT_HERSHEY_SIMPLEX
 
 
 def denormalize_box(box_coordinates, image_shape):
-    height, width = image_shape
-    x_min = int(box_coordinates[0] * width)
-    y_min = int(height - int(box_coordinates[1] * height))
-    x_max = int(box_coordinates[2] * width)
-    y_max = int(height - int(box_coordinates[3] * height))
+    h, w = image_shape
+    x_min = int(box_coordinates[0] * w)
+    y_min = int(box_coordinates[1] * h)
+    x_max = int(box_coordinates[2] * w)
+    y_max = int(box_coordinates[3] * h)
+
+    x_min = np.clip(x_min, 1, w - 1)
+    y_min = np.clip(y_min, 1, h - 1)
+    x_max = np.clip(x_max, 1, w - 1)
+    y_max = np.clip(y_max, 1, h - 1)
+
     return (x_min, y_min, x_max, y_max)
 
 

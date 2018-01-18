@@ -454,8 +454,8 @@ def get_image_bounding_box(obj):
     x_min = np.min(x_image_projections)
     x_max = np.max(x_image_projections)
 
-    y_min = np.min(y_image_projections)
-    y_max = np.max(y_image_projections)
+    y_min = 1 - np.min(y_image_projections)
+    y_max = 1 - np.max(y_image_projections)
 
     coordinates = (x_min, y_min, x_max, y_max)
     coordinates = [clamp(coordinate) for coordinate in coordinates]
