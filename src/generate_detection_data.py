@@ -18,7 +18,7 @@ num_images = 500
 resolution = (128, 128)
 background = 'plain'
 max_num_lamps = 3
-translation_range = [-1.5, 1.5]
+translation_range = [-1, 1]
 max_num_objects_in_scene = 6
 
 image_generator = ImageDetectorGenerator(

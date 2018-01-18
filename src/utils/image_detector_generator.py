@@ -86,12 +86,18 @@ class ImageDetectorGenerator():
     def render(self):
         self.set_render_properties()
         path_to_class = load_data(self.obj_models_directory, self.class_names)
+        path_to_classes = []
+        for class_name in self.class_names:
+            path_to_class = load_data(self.obj_models_directory, [class_name])
+            path_to_classes.append(path_to_class)
         data = list(path_to_class.items())
         for image_arg in range(self.num_images):
             self.set_lights()
             num_objects = random.randint(1, self.max_num_objects_in_scene)
             objects, class_names, boxes_coordinates = [], [], []
             for object_arg in range(num_objects):
+                path_to_class = random.sample(path_to_classes, 1)[0]
+                data = list(path_to_class.items())
                 filepath, class_name = random.sample(data, 1)[0]
                 obj = self.set_object(filepath, class_name)
                 objects.append(obj)
