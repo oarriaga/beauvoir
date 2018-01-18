@@ -105,13 +105,13 @@ class ImageDetectorGenerator():
             render_image(image_name)
             boxes_coordinates = np.asarray(boxes_coordinates)
             write_xml(
-                self.save_path + 'annotations/xml' + str(image_arg) + '.xml',
+                self.save_path + 'annotations/' + str(image_arg) + '.xml',
                 'CLARA2017', image_name,
                 (self.resolution[0], self.resolution[1], 3),
                 boxes_coordinates, class_names)
             delete_scene(self.blender_save_path)
 
-    def make_image_name(self, image_arg, prefix='detection_data'):
+    def make_image_name(self, image_arg, prefix='images'):
         """ construct the image name using the given labels
         args:
             class_name: str containing the class name
