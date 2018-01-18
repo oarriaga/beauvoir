@@ -3,7 +3,7 @@ import os
 beauvoir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
 sys.path.append(beauvoir_path)
 sys.path.append('/usr/local/lib/python3.5/dist-packages/')
-from utils import ImageDetectorGenerator
+from utils.image_detector_generator import ImageDetectorGenerator
 
 obj_model_directory = '../data/ShapeNetCore.v2/'
 save_path = '../data/detection_data/'
