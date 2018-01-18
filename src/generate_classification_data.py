@@ -3,7 +3,7 @@ import os
 beauvoir_path = os.path.dirname(os.path.realpath(__file__)) + '/'
 sys.path.append(beauvoir_path)
 sys.path.append('/usr/local/lib/python3.5/dist-packages/')
-from utils import ImageClassifierGenerator
+from utils.image_classifier_generator import ImageClassifierGenerator
 
 obj_model_directory = '../data/ShapeNetCore.v2/'
 save_path = '../data/crop_data/128x128/'
