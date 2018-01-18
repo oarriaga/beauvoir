@@ -94,14 +94,15 @@ class ImageDetectorGenerator():
             for object_arg in range(num_objects):
                 filepath, class_name = random.sample(data, 1)[0]
                 obj = self.set_object(filepath, class_name)
-                box_coordinates = get_image_bounding_box(obj)
                 objects.append(obj)
                 class_names.append(class_name)
-                boxes_coordinates.append(box_coordinates)
             image_name = self.make_image_name(image_arg)
             for obj in objects:
                 obj.select = True
             view_selected_object()
+            for obj in objects:
+                box_coordinates = get_image_bounding_box(obj)
+                boxes_coordinates.append(box_coordinates)
             render_image(image_name)
             boxes_coordinates = np.asarray(boxes_coordinates)
             write_xml(
