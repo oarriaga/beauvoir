@@ -1,5 +1,5 @@
 # beauvoir
-Domain randomization library for object detection and classification.
+Domain randomization library in Python with Blender for object detection and classification.
 
 Possible data augmentations:
 ![alt tag](images/data_augmentations.jpg)
