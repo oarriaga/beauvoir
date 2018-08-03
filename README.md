@@ -1,11 +1,15 @@
 # beauvoir
-Domain randomization library in Python/Blender for object detection and classification.
+Domain randomization library in Python for object detection and classification using Blender and ShapeNet.
 
-Random data augmentations:
+## Random data augmentations:
 ![alt tag](images/data_augmentations.jpg)
 
-Generated classification examples:
-![alt tag](images/generated_examples.jpg){:height="75%" width="75%"}
+## Generated classification examples:
+![alt tag](images/generated_examples.jpg)
 
-Generated examples:
+## Generated object-detection examples:
 ![alt tag](images/generated_detection_data.jpg)
+
+## Requirements
+* [Blender](https://www.blender.org/)
+* [ShapeNet dataset](https://www.shapenet.org/)
