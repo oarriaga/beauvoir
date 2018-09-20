@@ -4,9 +4,6 @@ import random
 from numpy.random import uniform
 from numpy.random import randint
 
-from .data_manager import load_data
-from .data_manager import get_class_names
-
 from .blender_utils import load_obj
 from .blender_utils import change_light_conditions
 from .blender_utils import render_image
@@ -24,10 +21,10 @@ from .blender_utils import get_image_bounding_box
 
 
 class ImageClassifierGenerator():
-    def __init__(self, obj_models_directory, save_path, class_names='all',
-                 num_images_per_class=100, resolution=(500, 500),
-                 resolution_percentage=100, background='plain',
-                 background_images_directory=None,
+    def __init__(self, data, save_path,
+                 num_images_per_class=100,
+                 resolution=(500, 500), resolution_percentage=100,
+                 background='plain', background_images_directory=None,
                  lamp_type='POINT', max_num_lamps=4,
                  lamp_location_range=[-15, 15], lamp_energy_range=[1, 5],
                  rotation_range=[0, 360],
@@ -46,13 +43,9 @@ class ImageClassifierGenerator():
                         "There are no files with '.png' prefix in directory",
                         self.background_image_paths)
 
+        self.data = data
         self.blender_save_path = '../data/cache/current_scene.blend'
-        self.obj_models_directory = obj_models_directory
         self.save_path = save_path
-        if class_names == 'all':
-            self.class_names = get_class_names(obj_models_directory)
-        else:
-            self.class_names = class_names
         self.resolution = resolution
         self.resolution_percentage = resolution_percentage
         self.num_images_per_class = num_images_per_class
@@ -77,22 +70,15 @@ class ImageClassifierGenerator():
 
     def render(self):
         self.set_render_properties()
-        for class_name in self.class_names:
-            path_to_class = load_data(self.obj_models_directory, [class_name])
-            num_images_rendered = 0
-            stay_in_class = True
-            while(stay_in_class):
-                for filepath, class_name in path_to_class.items():
-                    obj = self.construct_scene(filepath, class_name)
-                    box_coordinates = get_image_bounding_box(obj)
-                    image_name = self.make_image_name(
-                            class_name, num_images_rendered, box_coordinates)
-                    render_image(image_name)
-                    delete_scene(self.blender_save_path)
-                    num_images_rendered = num_images_rendered + 1
-                    if num_images_rendered >= self.num_images_per_class:
-                        stay_in_class = False
-                        break
+        for class_name, model_path in self.data.items():
+            print(class_name, model_path)
+            for num_images_rendered in range(self.num_images_per_class):
+                obj = self.construct_scene(model_path, class_name)
+                box_coordinates = get_image_bounding_box(obj)
+                image_name = self.make_image_name(
+                        class_name, num_images_rendered, box_coordinates)
+                render_image(image_name)
+                delete_scene(self.blender_save_path)
 
     def make_image_name(self, class_name, arg, box_coordinates):
         """ construct the image name using the given labels
